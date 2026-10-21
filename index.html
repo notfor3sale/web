@@ -3,173 +3,582 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>part-timejobs.lat | Oportunidades Laborales Flexibles</title>
+    <title>part-timejobs.lat | Portal de Empleo Medio Tiempo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --accent-color: #38bdf8;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border-color: #334155;
+            --bg-body: #f3f4f6;
+            --surface: #ffffff;
+            --brand-blue: #0a66c2;
+            --brand-hover: #004182;
+            --text-dark: #191919;
+            --text-muted: #666666;
+            --border-color: #e0e0e0;
+            --tag-bg: #e8f0fe;
+            --tag-text: #0b57d0;
+            --green-tag: #e6f4ea;
+            --green-text: #137333;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.5;
         }
 
+        /* Top Navigation Header */
         header {
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: var(--surface);
             border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent-color);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--brand-blue);
+            text-decoration: none;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .hero {
-            padding: 6rem 5% 4rem;
-            max-width: 900px;
+        .logo-badge {
+            background-color: var(--brand-blue);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-info {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Search Header Banner */
+        .search-banner {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2.5rem 1rem;
+        }
+
+        .search-container {
+            max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .search-container h1 {
+            font-size: 2rem;
             font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .search-container p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
             margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-            line-height: 1.2;
         }
 
-        .hero h1 span {
-            color: var(--accent-color);
-        }
-
-        .hero p {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .features {
-            padding: 4rem 5%;
-            max-width: 1200px;
+        .fake-search-bar {
+            background: var(--surface);
+            border: 1px solid #b2b2b2;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 800px;
             margin: 0 auto;
+        }
+
+        .search-field {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-right: 1px solid var(--border-color);
+            padding-right: 1rem;
+        }
+
+        .search-field:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        /* Main Content Grid */
+        .main-layout {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 280px 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Sidebar Filters */
+        .sidebar-card {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-count {
+            background-color: var(--bg-body);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Job Feed Section */
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .feed-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .feed-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Job Cards */
+        .job-card {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .job-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: var(--brand-blue);
+        }
+
+        .job-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--brand-blue);
+        }
+
+        .company-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-details-row {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .job-snippet {
+            font-size: 0.9rem;
+            color: #444;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .tags-container {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .job-tag {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            font-size: 0.78rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .job-tag.urgent {
+            background-color: var(--green-tag);
+            color: var(--green-text);
+        }
+
+        /* Info Section Banner */
+        .platform-stats {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 2rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
         }
 
-        .feature-card {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            padding: 2.5rem;
-            border-radius: 12px;
-            transition: transform 0.2s ease;
+        .stat-item h3 {
+            font-size: 2.2rem;
+            color: var(--brand-blue);
+            font-weight: 800;
         }
 
-        .feature-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .info-section {
-            padding: 4rem 5%;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .info-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .info-section p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        footer {
-            padding: 3rem 5%;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
+        .stat-item p {
             font-size: 0.9rem;
-            background-color: var(--surface-color);
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
-        @media (max-width: 768px) {
-            .hero {
-                padding: 4rem 5% 2rem;
+        /* Footer */
+        footer {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        @media (max-width: 850px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+            .fake-search-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-field {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Navigation -->
     <header>
-        <div class="logo">part-timejobs.lat</div>
-        <div style="color: var(--text-secondary); font-size: 0.9rem;">Red de Empleo Flexible</div>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                part-timejobs.lat
+                <span class="logo-badge">LATAM</span>
+            </a>
+            <div class="nav-info">
+                <span>Directorio de Empleo Parcial</span>
+                <span>•</span>
+                <span>Vacantes Verificadas</span>
+            </div>
+        </div>
     </header>
 
-    <section class="hero">
-        <h1>El futuro del trabajo es <span>flexible</span></h1>
-        <p>Conectamos talento profesional con empresas líderes de América Latina que buscan esquemas de colaboración a medio tiempo, por proyectos y de alta especialización.</p>
+    <!-- Search Header Banner -->
+    <section class="search-banner">
+        <div class="search-container">
+            <h1>Encuentra empleos de medio tiempo en LATAM</h1>
+            <p>La red de contratación enfocada en esquemas laborales flexibles y por horas.</p>
+            
+            <div class="fake-search-bar">
+                <div class="search-field">
+                    <span>🔍</span>
+                    <span>Cargo, habilidad o empresa</span>
+                </div>
+                <div class="search-field">
+                    <span>📍</span>
+                    <span>América Latina (Remoto / Presencial)</span>
+                </div>
+                <div class="search-field" style="flex: 0.5;">
+                    <span>🕒</span>
+                    <span>Medio Tiempo</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="features">
-        <div class="feature-card">
-            <h3>Flexibilidad Horaria</h3>
-            <p>Diseña tu propio esquema de horas adaptado a tu estilo de vida, estudios o proyectos independientes en curso.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Empresas Verificadas</h3>
-            <p>Colabora directamente con organizaciones formales, corporativos y startups consolidadas en toda la región latinoamericana.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Desarrollo Global</h3>
-            <p>Accede a oportunidades internacionales y nacionales sin la necesidad de reubicación física, operando de manera remota.</p>
+    <!-- Main Content -->
+    <div class="main-layout">
+        
+        <!-- Sidebar Filters -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="filter-group">
+                    <div class="filter-title">Modalidad</div>
+                    <div class="filter-item">
+                        <span>Remoto 100%</span>
+                        <span class="filter-count">142</span>
+                    </div>
+                    <div class="filter-item">
+                        <span>Híbrido</span>
+                        <span class="filter-count">89</span>
+                    </div>
+                    <div class="filter-item">
+                        <span>Presencial</span>
+                        <span class="filter-count">34</span>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-title">Jornada</div>
+                    <div class="filter-item">
+                        <span>20 hrs / semana</span>
+                        <span class="filter-count">110</span>
+                    </div>
+                    <div class="filter-item">
+                        <span>30 hrs / semana</span>
+                        <span class="filter-count">95</span>
+                    </div>
+                    <div class="filter-item">
+                        <span>Fines de Semana</span>
+                        <span class="filter-count">60</span>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-title">Área Profesional</div>
+                    <div class="filter-item">
+                        <span>Desarrollo & IT</span>
+                        <span class="filter-count">78</span>
+                    </div>
+                    <div class="filter-item">
+                        <span>Soporte & CX</span>
+                        <span class="filter-count">64</span>
+                    </div>
+                    <div class="filter-item">
+                        <span>Marketing Digital</span>
+                        <span class="filter-count">52</span>
+                    </div>
+                    <div class="filter-item">
+                        <span>Ventas & B2B</span>
+                        <span class="filter-count">41</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Job Feed -->
+        <main class="feed">
+            <div class="feed-header">
+                <div>
+                    <div class="feed-title">Vacantes Destacadas</div>
+                    <div class="feed-subtitle">Mostrando oportunidades de contratación activa en la región</div>
+                </div>
+            </div>
+
+            <!-- Job Card 1 -->
+            <article class="job-card">
+                <div class="job-card-header">
+                    <div>
+                        <div class="job-title">Especialista en Soporte Técnico / Bilingüe</div>
+                        <div class="company-name">CloudTech Solutions Latam</div>
+                    </div>
+                </div>
+                <div class="job-details-row">
+                    <span>📍 Remoto (América Latina)</span>
+                    <span>🕒 20 horas / semana</span>
+                    <span>USD $800 - $1,100 / mes</span>
+                </div>
+                <p class="job-snippet">Buscamos profesional con atención a clientes B2B para soporte de nivel 1 en turnos matutinos flexibles. Atención de tickets y chat en vivo.</p>
+                <div class="tags-container">
+                    <span class="job-tag urgent">Contratación Rápida</span>
+                    <span class="job-tag">Horario Matutino</span>
+                    <span class="job-tag">Soporte IT</span>
+                </div>
+            </article>
+
+            <!-- Job Card 2 -->
+            <article class="job-card">
+                <div class="job-card-header">
+                    <div>
+                        <div class="job-title">Diseñador UI/UX Junior</div>
+                        <div class="company-name">Estudio Digital Node</div>
+                    </div>
+                </div>
+                <div class="job-details-row">
+                    <span>📍 Remoto</span>
+                    <span>🕒 25 horas / semana</span>
+                    <span>USD $900 - $1,300 / mes</span>
+                </div>
+                <p class="job-snippet">Creación de wireframes, prototipos en Figma y apoyo en el sistema de diseño para productos SaaS. Trabajo en equipo multicultural.</p>
+                <div class="tags-container">
+                    <span class="job-tag">Figma</span>
+                    <span class="job-tag">UI/UX</span>
+                    <span class="job-tag">Horario Flexible</span>
+                </div>
+            </article>
+
+            <!-- Job Card 3 -->
+            <article class="job-card">
+                <div class="job-card-header">
+                    <div>
+                        <div class="job-title">Copywriter & Redactor de Contenidos SEO</div>
+                        <div class="company-name">Agencia Growth LATAM</div>
+                    </div>
+                </div>
+                <div class="job-details-row">
+                    <span>📍 Remoto</span>
+                    <span>🕒 15 horas / semana</span>
+                    <span>USD $500 - $750 / mes</span>
+                </div>
+                <p class="job-snippet">Redacción de artículos de blog, copys para redes sociales y newsletters enfocadas en conversión. Orientado al sector B2B.</p>
+                <div class="tags-container">
+                    <span class="job-tag">Copywriting</span>
+                    <span class="job-tag">SEO</span>
+                    <span class="job-tag">Por Proyecto</span>
+                </div>
+            </article>
+
+            <!-- Job Card 4 -->
+            <article class="job-card">
+                <div class="job-card-header">
+                    <div>
+                        <div class="job-title">Desarrollador Frontend React (Part-Time)</div>
+                        <div class="company-name">Software Lab MX</div>
+                    </div>
+                </div>
+                <div class="job-details-row">
+                    <span>📍 Híbrido / Remoto</span>
+                    <span>🕒 20 horas / semana</span>
+                    <span>USD $1,200 - $1,600 / mes</span>
+                </div>
+                <p class="job-snippet">Mantenimiento e implementación de componentes UI en React.js y Tailwind CSS para plataformas web corporativas.</p>
+                <div class="tags-container">
+                    <span class="job-tag urgent">Especializado</span>
+                    <span class="job-tag">React</span>
+                    <span class="job-tag">JavaScript</span>
+                </div>
+            </article>
+
+        </main>
+    </div>
+
+    <!-- Platform Metrics -->
+    <section class="platform-stats">
+        <h2>Impulsando la flexibilidad laboral en la región</h2>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Conectando el mejor talento con empresas de mentalidad moderna</p>
+        
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>+350</h3>
+                <p>Empresas registradas</p>
+            </div>
+            <div class="stat-item">
+                <h3>20 hrs</h3>
+                <p>Promedio de jornada semanal</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Enfoque en flexibilidad</p>
+            </div>
+            <div class="stat-item">
+                <h3>12</h3>
+                <p>Países de LATAM alcanzados</p>
+            </div>
         </div>
     </section>
 
-    <section class="info-section">
-        <h2>Un ecosistema diseñado para el talento moderno</h2>
-        <p>La dinámica laboral ha evolucionado. En part-timejobs.lat entendemos que la productividad no se mide en horas silla, sino en resultados, experiencia y optimización del tiempo.</p>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 part-timejobs.lat. Todos los derechos reservados. Red global de reclutamiento flexible.</p>
+        <div class="footer-content">
+            <div>
+                <strong>part-timejobs.lat</strong> — Red de empleo flexible y medio tiempo.
+            </div>
+            <div>
+                &copy; 2026 part-timejobs.lat. Todos los derechos reservados.
+            </div>
+        </div>
     </footer>
 
 </body>
